@@ -8,3 +8,6 @@ rsconnect/*
 .DS_Store
 paper_pdfs/*
 packrat/*
+publish.R
+reprohack.png
+latinr_icon.ai-2.png
