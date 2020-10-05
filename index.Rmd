@@ -14,7 +14,7 @@ params:
   registration_url: https://www.eventbrite.com.ar/o/reprohack-en-latinr-31351318695 
   hackpad_url: http://bit.ly/reprohack_latinr2020
   submission_url: https://forms.gle/vMk25vCevMg2QiYQ9
-  reprohack_repo_url: https://github.com/annakrystalli/n8cir-reprohacks
+  reprohack_repo_url: https://github.com/reprohack/LatinR-ReproHack
   submission_form_title: "ReproHack Paper Submission Form - n8"
   feedback_form_title: "ReproHack feedback form - n8"
 runtime: shiny
