@@ -1,20 +1,18 @@
 ---
-title: "N8 CIR 'Northern Tour' ReproHack series"
+title: "LatinR 2020 ReproHack!"
 output:
     html_document:
         theme: flatly
         css: reprohack.css
 params: 
-  title: "N8 CIR 'Northern Tour' ReproHack series"
-  room_location: "Multiple locations"
-  address: "Newcastle, York, Leeds, Sheffield, Manchester"
-  date: "21 Jan - 12 Mar 2020"
+  title: "LatinR 2020 ReproHack!"
+  room_location: "Blackboard Collaborate"
+  address: "Remote"
+  date: "8th October 2020"
   time: "10:00am-17:00pm"
-  bannerurl: "reprohack-banner.png"
-  latitude: 53.38119
-  longitude: -1.48036
-  registration_url: https://n8cir.org.uk/news/reprohacks/ 
-  hackpad_url: https://bit.ly/remote-reprohack-hackpad
+  bannerurl: "latinr_banner.png"
+  registration_url: https://www.eventbrite.com.ar/o/reprohack-en-latinr-31351318695 
+  hackpad_url: http://bit.ly/reprohack_latinr2020
   submission_url: https://forms.gle/vMk25vCevMg2QiYQ9
   reprohack_repo_url: https://github.com/annakrystalli/n8cir-reprohacks
   submission_form_title: "ReproHack Paper Submission Form - n8"
@@ -25,7 +23,7 @@ runtime: shiny
 ![](`r params$bannerurl`)
 
 # **`r params$title`**
-## _A series of hands-on Reproducibility Hackathon_
+## _A one day hands-on Reproducibility Hackathon_
 
 <br>
 
@@ -35,46 +33,6 @@ runtime: shiny
 #### **`r shiny::icon("map-marked-alt")` `r params$address`**
 
 
-```{r out.width='100%', fig.height=6, eval=require('leaflet'), echo=FALSE, message=FALSE, warning=FALSE}
-library(leaflet)
-library(dplyr)
-
-event_log <- readr::read_csv("data/event-log.csv") %>% 
-  mutate(upcoming =  date >= Sys.Date()) %>%
-  mutate(popup = glue::glue("<h3><a href={url} {title}></h3><br>{date}"),
-         date_f = format(date, format="%a %b %d %Y"))
-
-plot_log <- event_log %>%
-  mutate(color = case_when(upcoming == TRUE ~ "green",
-                           upcoming == FALSE ~ "orange"))
-
-
-#pal <- colorFactor(c("green", "orange"), c(FALSE, TRUE))
-
-make_popup <- function(df){
-  popup_row <- function(x){paste0(
-    "<h3><a href=", x["url"], "> ", x["title"],"</a></h3>", " <br>", 
-    "<strong> Date: </strong>", x["date_f"], "<br>",
-    "<strong> Room: </strong>", x["room"], "<br>",
-    "<strong> Address: </strong>", x["address"], "<br>")}
-  apply(df, 1, popup_row)
-}
-
-icons <- awesomeIcons(
-  icon = 'ios-close',
-  iconColor = 'black',
-  library = 'ion',
-  markerColor = plot_log$color
-)
-
-plot_log %>%
-  leaflet() %>%
-  addProviderTiles("CartoDB.Positron") %>%
-  addAwesomeMarkers(icon = icons, popup = make_popup(plot_log))
-```
-
-
-***
 
 
 ```{r, echo = F, results='asis'}
@@ -176,6 +134,8 @@ wellPanel(a("Nominate Paper", class = "btn btn-primary btn-md",
 library(googlesheets4)
 options(gargle_oauth_cache = ".secrets",
         gargle_oauth_email = "annakrystalli@googlemail.com")
+#googlesheets4::sheets_auth()
+googledrive::drive_auth()
 ```
 
 ```{r, echo=FALSE}
@@ -235,7 +195,7 @@ responses <- dplyr::left_join(responses, stats)
 
 
 row_n <- nrow(responses)
-set.seed(params$latitude * params$longitude)
+set.seed(12345)
 
 if(row_n > 0){
   
@@ -282,24 +242,17 @@ wellPanel(a("Refresh proposal list", class = "btn btn-primary btn-md",
 
 
 ***
-
-
-### ReproHack History
-
-
-ReproHacks were inspired by **Owen Petchey's** [**Reproducible Research in Ecology, Evolution, Behaviour, and Environmental Studies course**](https://github.com/opetchey/RREEBES), where students attempt to  reproduce the analyses and figures of a paper from the raw data. We wanted to attempt to do the same but, while they take a few months over a number of sessions, for our first event we only had one day. So to condense that activity into one day we set the challenge to be: **reproduce results from published data AND code**.
-
-We've run **two ReproHacks so far** as part of satellite OpenCon events (Berlin 2016, [London 2017](https://rse.shef.ac.uk/blog/opencon-london/)) with **a [series of them planned for 2019-2020](https://rse.shef.ac.uk/blog/ssi-fellowships-2019/) using funding provided through the [Software Sustainability Institute Fellowship programme](https://www.software.ac.uk/blog/2019-04-11-announcing-2019-software-sustainability-institute-fellows)**. 
+ 
 
 #### If you would like to host a ReproHack at your institution please get in touch!
 
-***
+
 
 <div class="pull-left">
 
 ### Get in touch
 
-Chat to us on [Slack](https://reprohack-autoinvite.herokuapp.com/) or email [reprohack@googlegroups.com](mailto:reprohack@googlegroups.com).
+Chat to us on [Slack](https://reprohack-autoinvite.herokuapp.com/) or email [reprohack.team@gmail.com](mailto:reprohack.team@gmail.com).
 
 </div>
 
