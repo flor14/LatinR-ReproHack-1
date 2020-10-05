@@ -1,15 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
 h1.title {display: none;}
+:root {
+  --main-txt-color: #4c4949;
+  --h-color: #5443FF;
+  --a-color: #3C3888 ;
+}
 
 body { 
+    color: var(--main-txt-color);
+    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     line-height: 1.6;} 
 
-h1, h2, h3, h4, h5, h6 { font-weight: bold; } 
+h1, h2, h3, h4, h5, h6 { 
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold; } 
+
+h1, h2, h3 {
+  color: var(--h-color);
+}
+
+h4, h5, h6 {
+  color: black;
+}
 
 h1 { font-size: 2em; } 
 h2 { font-size: 1.75em; } 
 h3 { font-size: 1.60em; } 
-h4{ font-size: 1.50em; } 
+h4 { font-size: 1.50em; } 
 h5 { font-size: 1.30em; } 
 h6 { font-size: 1.25em; } 
 
@@ -24,32 +43,34 @@ h6 { font-size: 1.25em; }
 }
 
 a:link {
-  color: #071059;
+  color: var(--a-color);
 }
 
 /* visited link */
 a:visited {
-  color: #071059;
+  color: var(--a-color);
 }
 
 /* mouse over link */
 a:hover {
-  color: #4DB797;
+  color: var(--a-color);
 }
 
 /* selected link */
 a:active {
-  color: #071059;
+  color: var(--a-color);
 }
 
 .btn-primary:link, .btn-primary:visited, .btn-primary:hover, .btn-primary:active {
     color: white;
     font-weight: bold;
+    background-color: #5443FF;
+    border-color: #3C3888;
 }
 
 .card {
   background-color: #ECF0F1;
-  border: 5px solid #2C3D50;
+  border: 5px solid var(--h-color);
   padding: 50px;
   margin: 20px;
   overflow-wrap: break-word;
